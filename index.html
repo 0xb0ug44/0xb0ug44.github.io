@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | 0xb0ug44</title>
+  <meta name="description" content="Cybersecurity professional specializing in network security, ethical hacking, and system administration." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Scanline overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+  <!-- Particle canvas -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="nav-logo-bracket">[</span>
+      <span class="nav-logo-text">0xb0ug44</span>
+      <span class="nav-logo-bracket">]</span>
+      <span class="nav-cursor">_</span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link"><span class="nav-num">01.</span> Home</a></li>
+      <li><a href="#about" class="nav-link"><span class="nav-num">02.</span> About</a></li>
+      <li><a href="#projects" class="nav-link"><span class="nav-num">03.</span> Projects</a></li>
+      <li><a href="#certs" class="nav-link"><span class="nav-num">04.</span> Certs</a></li>
+      <li><a href="#blog" class="nav-link"><span class="nav-num">05.</span> Blog</a></li>
+      <li><a href="#contact" class="nav-link"><span class="nav-num">06.</span> Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Available for engagements</span>
+      </div>
+      <div class="hero-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot green"></span>
+          <span class="dot yellow"></span>
+          <span class="terminal-title">bash — 80×24</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line"><span class="prompt">root@kali:~#</span> <span class="cmd">whoami</span></div>
+          <div class="terminal-line output" id="typeTarget"></div>
+          <div class="terminal-line"><span class="prompt">root@kali:~#</span> <span class="cmd">cat /etc/skills</span></div>
+          <div class="terminal-line output">Penetration Testing | SIEM | System Administration</div>
+          <div class="terminal-line"><span class="prompt">root@kali:~#</span> <span class="cmd">nmap -A target.local<span class="blink-cursor">█</span></span></div>
+        </div>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-sm">Cybersecurity Engineer &amp; Penetration Tester</span>
+        <span class="hero-name glitch" data-text="Mohamed Yassine Bougamra">Mohamed Yassine Bougamra</span>
+      </h1>
+      <p class="hero-desc">Securing systems. Exposing vulnerabilities. Writing the exploits so defenders know what to patch.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <span class="btn-icon">▶</span> View Projects
+        </a>
+        <a href="#blog" class="btn btn-ghost">Read Write-ups</a>
+      </div>
+      <div class="hero-stats">
+     <!-- <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-label">CVEs Reported</span></div>
+        <div class="stat-divider"></div>-->
+        <div class="stat"><span class="stat-num" data-count="12">0</span><span class="stat-label">Certs Earned</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hex-ring ring-1"></div>
+      <div class="hex-ring ring-2"></div>
+      <div class="hex-ring ring-3"></div>
+      <div class="hex-core">
+        <span class="hex-icon">⬡</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-lead">I’m a Cybersecurity Engineering student at TEK-UP, specializing in offensive security and penetration testing.</p>
+          <p>My background in network and systems engineering (Higher Institute of Computer Science, University of Tunis El Manar) and a 7-month internship in SIEM, networking, and system administration mean I understand how environments are built, and how defenders see an attack.</p>
+          <p>I focus on web, mobile, and Active Directory attack paths, finding vulnerabilities and exploiting misconfigurations that real attackers use.</p>
+          <p>I hold 12 industry certifications, including CPENT, CRTE, eWPTX, and eCPPT.</p>
+        </div>
+        <div class="about-terminal">
+          <div class="terminal-bar">
+            <span class="dot red"></span>
+            <span class="dot green"></span>
+            <span class="dot yellow"></span>
+            <span class="terminal-title">profile.json</span>
+          </div>
+          <div class="terminal-body code-block">
+<pre><code><span class="json-brace">{</span>
+  <span class="json-key">"name"</span>: <span class="json-str">"Mohamed Yassine Bougamra"</span>,
+  <span class="json-key">"role"</span>: <span class="json-str">"Cybersecurity Student"</span>,
+  <span class="json-key">"location"</span>: <span class="json-str">"Ben Arous, Tunisia"</span>,
+  <span class="json-key">"clearance"</span>: <span class="json-str">"Secret"</span>,
+  <span class="json-key">"experience"</span>: <span class="json-num">0-1</span>,
+  <span class="json-key">"specializations"</span>: [
+    <span class="json-str">"Penetration Testing"</span>,
+    <span class="json-str">"Active Directory Security"</span>,
+    <span class="json-str">"Web & Mobile App Security"</span>,
+    <span class="json-str">"SIEM"</span>,
+    <span class="json-str">"System Administration"</span>,
+  ],
+  <span class="json-key">"status"</span>: <span class="json-str">
+    "open_to_engagements"</span>
+<span class="json-brace">}</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section section-dark" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="network">Network and Security</button>
+        <button class="filter-btn" data-filter="siem">SIEM</button>
+        <button class="filter-btn" data-filter="tool">Tools</button>
+
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+
+        <article class="project-card featured" data-category="network">
+          <div class="project-badge">Featured</div>
+          <div class="project-card-header">
+            <span class="project-category">Network and Security</span>
+
+          </div>
+          <div class="project-icon">🔥🧱</div>
+          <h3 class="project-title">High Availability Captive Portal with pfSense</h3>
+          <p class="project-desc">Designed and deployed a high-availability captive portal with pfSense, combining HA failover, RADIUS/Active Directory authentication, and network segmentation to deliver secure, continuous Internet access in an academic environment.</p>
+          <div class="project-image">
+            <img src="images/pfsense-topology.png" alt="Network topology showing the RADIUS server, pfSense master and backup firewalls, LAN, WAN, and Internet connections">
+          </div>
+          <div class="project-tags">
+            <span class="ptag">pfSense</span>
+            <span class="ptag">HA</span>
+            <span class="ptag">RADIUS</span>
+            <span class="ptag">Active Directory</span>
+          </div>
+          <div class="project-meta">
+            <span class="meta-item">⭐ 842</span>
+            <span class="meta-item">🍴 143</span>
+          </div>
+        </article>
+
+        <article class="project-card featured" data-category="siem">
+          <div class="project-badge">Featured</div>
+          <div class="project-card-header">
+            <span class="project-category">SIEM</span>
+
+          </div>
+          <div class="project-icon">🛡️</div>
+          <h3 class="project-title">SIEM Implementation for Threat Detection & Visualization</h3>
+          <p class="project-desc">Built an open-source SIEM-based SOC platform with Wazuh, pfSense, GLPI, and Grafana, centralizing log monitoring, real-time threat detection, and automated incident management—successfully detecting 5 simulated attack scenarios.</p>
+          <div class="project-image">
+            <img src="images/siem-architecture.png" alt="Global SIEM architecture showing Kali Linux, Windows and Linux sources, pfSense, Wazuh, Grafana, GLPI, email alerts, and Active Directory">
+          </div>
+          <div class="project-tags">
+            <span class="ptag">Wazuh</span>
+            <span class="ptag">pfSense</span>
+            <span class="ptag">GLPI</span>
+            <span class="ptag">Grafana</span>
+          </div>
+          <div class="project-meta">
+            <span class="meta-item">⭐ 2.1k</span>
+            <span class="meta-item">🍴 387</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="tool">
+          <div class="project-card-header">
+            <span class="project-category">Tool</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-icon">🔐</div>
+          <h3 class="project-title">HashBreaker</h3>
+          <p class="project-desc">GPU-accelerated hash cracker supporting MD5, SHA-1/256/512, bcrypt, and NTLM with rule-based mutation engine and wordlist generation.</p>
+          <div class="project-code">
+            <pre><code>hashbreaker -m ntlm \
+  -w /wordlists/rockyou.txt \
+  --rules best64 \
+  <span class="str">-h 8846f7eaee8fb117ad06bdd830b7586c</span></code></pre>
+          </div>
+          <div class="project-tags">
+            <span class="ptag">C++</span>
+            <span class="ptag">CUDA</span>
+            <span class="ptag">OpenCL</span>
+          </div>
+          <div class="project-meta">
+            <span class="meta-item">⭐ 561</span>
+            <span class="meta-item">🍴 89</span>
+          </div>
+        </article>
+
+<!--        <article class="project-card" data-category="research">
+          <div class="project-card-header">
+            <span class="project-category">Research</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-icon">🧬</div>
+          <h3 class="project-title">AD Bloodhound Extensions</h3>
+          <p class="project-desc">Custom BloodHound queries and attack path extensions for Azure AD hybrid environments. Identifies Golden Ticket and DCSync opportunities.</p>
+          <div class="project-code">
+            <pre><code><span class="cmt"># Find DA shortest paths</span>
+MATCH p=shortestPath(
+  (u:User)-[*1..]->(g:Group)
+)
+WHERE g.name =~ <span class="str">".*DOMAIN ADMINS.*"</span>
+RETURN p</code></pre>
+          </div>
+          <div class="project-tags">
+            <span class="ptag">Neo4j</span>
+            <span class="ptag">Cypher</span>
+            <span class="ptag">AD</span>
+          </div>
+          <div class="project-meta">
+            <span class="meta-item">⭐ 1.3k</span>
+            <span class="meta-item">🍴 201</span>
+          </div>
+        </article> -->
+
+        
+
+        
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Certifications &amp; <span class="accent">Training</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="certs-grid">
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/CPENT.png" alt="CPENT certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Certified Penetration Tester Professional</h3>
+            <p class="cert-issuer">EC-Council</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/CRTE.png" alt="CRTE certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Certified Red Team Expert</h3>
+            <p class="cert-issuer">Altered Security</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/CRTP.png" alt="CRTP certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Certified Red Team Professional</h3>
+            <p class="cert-issuer">Altered Security</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eWPTX.svg" alt="eWPTX certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Web Application Penetration Tester eXtreme</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eCPPT.svg" alt="eCPPT certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Certified Professional Penetration Tester</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eMAPT.svg" alt="eMAPT certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Mobile Application Penetration Tester</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eSOC.svg" alt="eSOC certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Security Operations Certified</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/RHCE.png" alt="RHCE certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Red Hat Certified Engineer</h3>
+            <p class="cert-issuer">Red Hat</p>
+            <p class="cert-year">2026 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eWPT.svg" alt="eWPT certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Web Application Penetration Tester</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2025 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/eJPT.svg" alt="eJPT certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Junior Penetration Tester</h3>
+            <p class="cert-issuer">INE</p>
+            <p class="cert-year">2025 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/RHCSA.png" alt="RHCSA certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Red Hat Certified System Administrator</h3>
+            <p class="cert-issuer">Red Hat</p>
+            <p class="cert-year">2025 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+                <div class="cert-card">
+          <div class="cert-logo">
+            <img src="badges/PCAP.png" alt="PCAP certification badge" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <h3>Certified Associate Python Programmer</h3>
+            <p class="cert-issuer">Python Institute</p>
+            <p class="cert-year">2025 · Active</p>
+          </div>
+          <div class="cert-badge verified">✓ Verified</div>
+        </div>
+
+      </div>
+
+      <!-- HTB / TryHackMe Rank -->
+      <div class="platform-ranks">
+       <!-- <div class="rank-card">
+          <div class="rank-header">
+            <span class="rank-platform htb">HackTheBox</span>
+            <span class="rank-title">Pro Hacker</span>
+          </div>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="--fill: 78%">
+              <div class="rank-fill"></div>
+            </div>
+            <span class="rank-pct">78%</span>
+          </div>
+          <p class="rank-sub">Rank #4,201 · 80 Machines Pwned</p>
+        </div> -->
+        <div class="rank-card">
+          <div class="rank-header">
+            <span class="rank-platform thm">TryHackMe</span>
+            <span class="rank-title">[0x9][MAGE]</span>
+          </div>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="--fill: 92%">
+              <div class="rank-fill"></div>
+            </div>
+            <span class="rank-pct">95%</span>
+          </div>
+          <p class="rank-sub">Top 5% Globally · 80 Rooms</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="section section-dark" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Technical <span class="accent">Write-ups</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="blog-grid">
+
+         <article class="blog-card featured-post">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Sep 17, 2026</span>
+          </div>
+          <h3 class="blog-title">Certified Penetration Testing Professional (CPENT) Review</h3>
+          <p class="blog-excerpt">My CPENT experience, 82.4% score, exam playground zones, preparation strategy, and practical lessons from the assessment.</p>
+
+          <div class="blog-footer">
+            <div class="blog-tags-row">
+              <span class="btag">CPENT</span>
+              <span class="btag">Certification</span>
+              <span class="btag">Review</span>
+            </div>
+            <a href="blog/CPENT_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Jul 22, 2026</span>
+          </div>
+          <h3 class="blog-title">Certified Red Team Expert (CRTE) Review</h3>
+          <p class="blog-excerpt">What my CRTE experience covers: chaining advanced AD attacks, abusing forest and domain trust relationships, slipping past defensive controls, and applying red team tradecraft at enterprise scale.</p>
+
+          <div class="blog-footer">
+            <div class="blog-tags-row">
+              <span class="btag">CRTE</span>
+              <span class="btag">Certification</span>
+              <span class="btag">Review</span>
+            </div>
+            <a href="blog/CRTE_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+
+
+
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Jun 10, 2026</span>
+          </div>
+          <h3 class="blog-title">Certified Red Team Professional (CRTP) Review</h3>
+          <p class="blog-excerpt">Inside my CRTP path: hands-on Active Directory enumeration, exploiting misconfigurations, pivoting through compromised hosts, and escalating privileges the way real internal engagements demand.</p>
+
+          <div class="blog-footer">
+            <div class="blog-tags-row">
+              <span class="btag">CRTP</span>
+              <span class="btag">Certification</span>
+              <span class="btag">Review</span>
+            </div>
+            <a href="blog/CRTP_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="blog-cta">
+        <a href="blog/index.html" class="btn btn-ghost">View All Write-ups →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="contact-lead">Looking to hire a penetration tester, collaborate on research, or discuss a CVE disclosure? Reach out through the channels below.</p>
+          <div class="contact-channels">
+            <a href="mailto:mybougamra@gmail.com" class="channel">
+              <span class="channel-icon">📧</span>
+              <div>
+                <span class="channel-label">Email</span>
+                <span class="channel-value">mybougamra@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+21622342197" class="channel">
+              <span class="channel-icon">📞</span>
+              <div>
+                <span class="channel-label">Phone</span>
+                <span class="channel-value">+216 22 342 197</span>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/med-yassine-bougamra" target="_blank" class="channel">
+              <span class="channel-icon">🔗</span>
+              <div>
+                <span class="channel-label">LinkedIn</span>
+                <span class="channel-value">Mohamed Yassine Bougamra</span>
+              </div>
+            </a>
+            <a >
+              <div>
+
+              </div>
+            </a>
+          </div>
+          <div class="pgp-block">
+            <span class="pgp-label">PGP Fingerprint</span>
+            <code class="pgp-key">4A3B 9F2E 8C1D 7A06 5E4B 3C2A 1F9E 8D7C 6B5A 4F3E</code>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@corp.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a topic</option>
+              <option value="pentest">Penetration Test Inquiry</option>
+              <option value="vuln">Vulnerability Disclosure</option>
+              <option value="collab">Research Collaboration</option>
+              <option value="speaking">Speaking / Training</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Describe your inquiry..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span class="btn-icon">▶</span> Send Message
+          </button>
+          <div class="form-note">For sensitive disclosures, please use PGP encryption.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">[0xb0ug44]_</span>
+          <p>Penetration Tester. Security Researcher.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certs">Certifications</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Write-ups</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mohamed Yassine Bougamra · Built with pure HTML/CSS/JS · No tracking · No cookies</p>
+        <p class="footer-ascii">/* stay paranoid, stay safe */</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
