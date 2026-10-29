@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>CRTE Review | 0xb0ug44</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/terminal.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+	<div class="scanlines" aria-hidden="true"></div>
+
+	<nav class="nav" id="nav">
+		<div class="nav-logo">
+			<a href="../index.html" style="text-decoration:none;color:inherit">
+				<span class="nav-logo-bracket">[</span>
+				<span class="nav-logo-text">0xb0ug44</span>
+				<span class="nav-logo-bracket">]</span>
+				<span class="nav-cursor">_</span>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="../index.html" class="nav-link">← Back</a></li>
+			<li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+		</ul>
+	</nav>
+
+	<div class="article-header">
+		<div class="container">
+			<div class="blog-meta" style="margin-bottom:1rem">
+				<span class="blog-category cat-net">Active Directory</span>
+				<span class="blog-date">Jul 22,2026</span>
+			</div>
+			<h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:860px;">
+				Certified Red Team Expert (CRTE) Review
+			</h1>
+			<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+				<div style="display:flex;align-items:center;gap:0.5rem">
+					<div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+					<span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+				</div>
+				<div class="blog-tags-row">
+					<span class="btag">CRTE</span>
+					<span class="btag">Active Directory</span>
+					<span class="btag">Red Team</span>
+					<span class="btag">Certification</span>
+					<span class="btag">Review</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="article-content" style="z-index:2;position:relative;">
+		<div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+			⚠️ Note: This review shares my personal exam experience and high-level learning points only. I am not disclosing exam answers or violating certification policy.
+		</div>
+
+		<h2>Overview</h2>
+		<p>The Certified Red Team Expert (CRTE) is an advanced offensive security certification offered by Altered Security. It is designed for practitioners who already have a solid grasp of Active Directory attacks and want to push further into multi-domain, multi-forest environments, evasion of modern defenses, and realistic red team tradecraft.</p>
+
+		<p>If you have a solid AD foundation, this is the natural next step. If you are just starting out in offensive security, you will want to build that foundation first because CRTE does not hold your hand.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>crte-overview.txt</span>
+				<span>overview</span>
+			</div>
+			<pre><code>CRTE: Certified Red Team Expert
+Provider: Altered Security
+Focus: Enterprise Active Directory red teaming
+Goal: Operate like an internal threat actor</code></pre>
+		</div>
+
+		<h2>Certification Snapshot</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/CRTE.jpg" alt="CRTE certification" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Official CRTE certification</figcaption>
+		</figure>
+
+		<h2>Background</h2>
+		<p>By day, I work on application security and web application penetration testing. I decided to take up CRTE as a personal challenge and learning opportunity to prepare for the OSCP+.</p>
+
+		<p>The course felt appealing because it goes deeper into PowerShell and Windows command-line methodology, covers more AD attack vectors, stays purely in the Windows world, and spends real time on Microsoft Defender for Endpoint and Microsoft Identity Protection concepts.</p>
+
+		<h2>What Is CRTE?</h2>
+		<p>The Certified Red Team Expert (CRTE) is an advanced offensive security certification offered by Altered Security. It is designed for practitioners who already have a solid grasp of Active Directory attacks and want to push further into multi-domain, multi-forest environments, evasion of modern defenses, and realistic red team tradecraft.</p>
+
+		<p>If you have a solid AD foundation, this is the natural next step. If you are just starting out in offensive security, you will want to build that foundation first because CRTE does not hold your hand.</p>
+
+		<h2>Course Review</h2>
+		<p>The CRTE course is delivered through a combination of slide-based, video-based material and a dedicated lab environment. The content is dense and unapologetically technical.</p>
+
+		<p>Over the span of 2 months, I spent approximately 3 hours each day after work as well as during the weekends to routinely tackle the course videos and the respective labs. The course videos consisted of recordings of instructor Nikhil Mittal’s lectures, combined with hands-on demos of a full attack chain, commencing from an assumed breached scenario. The hands-on demos were useful because the occasional issues encountered during command execution helped when troubleshooting similar problems in my own labs.</p>
+
+		<p>If you prefer not to watch the videos, PDFs and slides are also provided for study. Along the way, I kept notes on crucial attacks and associated tools and commands in my own cheat sheet.</p>
+
+		<p>I also encountered occasional technical difficulties when tackling the labs on my student virtual machine, but the Altered Security staff were prompt and responsive when I asked for help through the dedicated Discord channel.</p>
+
+		<h2>Core Topics</h2>
+		<p>The course focuses on abusing misconfigurations and default behaviors rather than relying on CVEs or unpatched vulnerabilities. This distinction matters. The lab is patched, and you will not find your way through by scanning for known exploits. Instead, you learn to weaponize the way Active Directory is designed to work: trusts, delegations, ACLs, and protocol behaviors that exist in virtually every enterprise environment.</p>
+
+		<p>Key areas covered:</p>
+		<ul>
+			<li>Multi-domain and multi-forest environments - one of the most distinctive aspects of CRTE. The lab spans multiple domains across multiple forests, forcing you to understand forest trust abuse, cross-forest attacks, and the subtle differences in how permissions and tickets behave across trust boundaries.</li>
+			<li>Privilege escalation and lateral movement - LAPS, gMSA, Kerberos delegation variants, ACL-based attacks, and more.</li>
+			<li>Persistence mechanisms - Golden tickets, Silver tickets, Diamond tickets, skeleton keys, and custom SSP techniques for maintaining access.</li>
+			<li>Antivirus and EDR bypass - AMSI bypass, ETW patching, obfuscation, and adapting tooling to evade modern security stacks.</li>
+			<li>C2 with Sliver - implant generation, C2 profiles, and pivoting with the open-source Sliver framework from BishopFox.</li>
+		</ul>
+
+		<h2>The Lab</h2>
+		<p>The lab environment really is great.</p>
+
+		<p>You are dropped into a multi-domain, multi-forest Active Directory network. Everything is patched. Defender is running. There are no low-hanging CVEs to grab. Your only path forward is understanding the environment deeply, enumerating trusts, identifying delegation misconfigurations, abusing ACL edges, and chaining findings together into a coherent attack path.</p>
+
+		<p>A few things stood out:</p>
+		<ul>
+			<li>The complexity is real. The jump from single-domain labs to multi-forest environments is not just more machines to compromise. It is a fundamentally different mental model.</li>
+			<li>You have to earn every step. There is no just-run-this-tool-and-get-output shortcut. The lab teaches you to understand why an attack works, not just how to execute it.</li>
+		</ul>
+
+		<h2>Lab Access Time</h2>
+		<p>The lab access time is limited. You can choose between 30, 60, or 90 days of lab access, and from my experience 30 days is enough. I was able to complete the lab in 7 days, but the important part is to use the lab time deliberately. Do not just follow the course slides linearly. Explore, break things, and come back to chapters after you have seen techniques in context. The lab makes much more sense the second time you read a section after actually touching the environment.</p>
+
+		<p>With the remaining lab time, I would recommend attempting the lab with Sliver C2, as it can be a great introduction to how C2 frameworks work. If, like me, it is your first time using one, you can fall back to the provided lab manual if you get stuck.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>study-notes.md</span>
+				<span>preparation</span>
+			</div>
+			<pre><code>- Follow the instructor demos closely
+- Capture tool usage and command patterns
+- Keep a structured cheat sheet
+- Use the slides and PDFs as backups
+- Ask for help quickly when the lab VM misbehaves</code></pre>
+		</div>
+
+		<h2>The Exam</h2>
+		<p>The CRTE exam is a fully practical, multi-forest Active Directory environment. You have 49 hours to compromise the environment and obtain command execution on a number of machines. You then have an extra 48 hours to submit your report.</p>
+
+		<p>A few notes from my experience:</p>
+		<ul>
+			<li>Enumerate everything before you exploit anything. This is standard advice, but in a multi-forest exam environment it is especially true.</li>
+			<li>Document as you go. Do not leave screenshots for the end. Take notes, save command output, and keep a running timeline of your path.</li>
+			<li>Take breaks. A fresh pair of eyes at hour two is worth more than three hours of tired enumeration. If you are stuck, sleep on it.</li>
+			<li>Use a report template. Altered does not provide one, but expects a professional report. A Sysreptor-based template can save time if you run it locally.</li>
+		</ul>
+
+		<h2>Tips &amp; Recommendations</h2>
+		<ul>
+			<li>Complete the course before touching the exam. There are techniques introduced late in the material that are directly relevant to the exam.</li>
+			<li>Try out a C2. Use the lab environment fully to test new tools and understand beacon behavior, sleep settings, and monitored-environment adaptations.</li>
+			<li>Build your own cheat sheet. Condensed notes on cross-forest attacks and delegation abuse will save time when you need quick references.</li>
+			<li>Understand the trust types cold. Forest trusts, external trusts, and PAM trusts all matter, and knowing how they can be abused is central to CRTE.</li>
+			<li>Do not neglect OPSEC. The course emphasizes stealth, and the XDR dashboard gives you a chance to compare different approaches.</li>
+		</ul>
+
+		<h2>Is It Worth It?</h2>
+		<p>Yes, absolutely.</p>
+
+		<p>What makes CRTE genuinely valuable is the emphasis on understanding rather than tooling. The techniques you learn in CRTE - cross-forest trust abuse, delegation attacks, AV evasion, and operating from a full C2 setup - are the techniques that show up in real enterprise engagements. This is not a course where you learn five commands and pass an exam. It is a course that changes how you think about AD environments.</p>
+
+		<p>Feel free to reach out in the comments if you have questions about the path or the exam - happy to help.</p>
+
+		<h2>Helpful Resources</h2>
+		<p>The official CRTE material was enough to tackle the exam, but external references were useful when I needed troubleshooting help or a second explanation.</p>
+
+		<ul>
+			<li>Microsoft documentation for PowerShell, Active Directory, and delegation concepts.</li>
+			<li>Community blog posts for command troubleshooting and attack-path validation.</li>
+			<li>Cheat sheets for Kerberoasting, AS-REP Roasting, ADCS abuse, and trust enumeration.</li>
+			<li>Personal notes and screenshots from the labs to keep the workflow consistent.</li>
+		</ul>
+
+		<h2>Conclusion</h2>
+		<p>The CRTE was a strong and focused Active Directory challenge that pushed me to think more carefully about Windows-only attack paths, precise enumeration, and operational discipline. It gave me a much better feel for how red team work looks in a realistic enterprise environment.</p>
+
+		<p>If you are preparing for OSCP+ or want to level up your AD methodology, CRTE is worth the effort. The course and exam sharpened my practical command-line workflow, pivoting mindset, and troubleshooting habits.</p>
+
+		<h2>Key Takeaways</h2>
+		<ul>
+			<li>Thorough enumeration drives the whole attack path.</li>
+			<li>PowerShell fluency matters more than you think.</li>
+			<li>Multiple file transfer methods are mandatory.</li>
+			<li>Good notes and screenshots make exam reporting much easier.</li>
+			<li>Restarting a stuck machine can save hours of frustration.</li>
+		</ul>
+
+		<div style="display:flex;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+			<a href="index.html" class="btn btn-ghost">← All Write-ups</a>
+			<a href="../index.html#certs" class="btn btn-ghost">View My Certifications →</a>
+		</div>
+	</main>
+
+	<footer class="footer" style="z-index:2;position:relative;">
+		<div class="container">
+			<div class="footer-bottom" style="border-top:none;padding-top:0">
+				<p>© 2026 Mohamed Yassine Bougamra</p>
+				<p class="footer-ascii">/* stay paranoid, stay safe */</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/main.js"></script>
+</body>
+</html>

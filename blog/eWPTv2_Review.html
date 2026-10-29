@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>eWPTv2 Review | 0xb0ug44</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/terminal.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+	<div class="scanlines" aria-hidden="true"></div>
+
+	<nav class="nav" id="nav">
+		<div class="nav-logo">
+			<a href="../index.html" style="text-decoration:none;color:inherit">
+				<span class="nav-logo-bracket">[</span>
+				<span class="nav-logo-text">0xb0ug44</span>
+				<span class="nav-logo-bracket">]</span>
+				<span class="nav-cursor">_</span>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="../index.html" class="nav-link">← Back</a></li>
+			<li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+		</ul>
+	</nav>
+
+	<div class="article-header">
+		<div class="container">
+			<div class="blog-meta" style="margin-bottom:1rem">
+				<span class="blog-category cat-web">Web Application Security</span>
+				<span class="blog-date">Oct 12, 2025</span>
+			</div>
+			<h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:860px;">
+				Mastering eWPTv2: My Experience, Practical Score Breakdown, and Study Strategy
+			</h1>
+			<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+				<div style="display:flex;align-items:center;gap:0.5rem">
+					<div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+					<span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+				</div>
+				<div class="blog-tags-row">
+					<span class="btag">eWPTv2</span>
+					<span class="btag">Web Security</span>
+					<span class="btag">Certification</span>
+					<span class="btag">Review</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="article-content" style="z-index:2;position:relative;">
+		<div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+			⚠️ Note: This write-up is based on my own experience and focuses on preparation strategy and domain-level learning outcomes. No exam answers are disclosed.
+		</div>
+
+		<p>I passed the <strong>eWPTv2</strong> certification from INE and wanted to share what helped me most. This review is written for learners who already understand the basics and want a realistic path into web application pentesting.</p>
+
+		<h2>My Background</h2>
+		<p>I come from a cybersecurity and forensic computing engineering background, with practical offensive-security experience through labs, CTFs, and real-world style environments. I was not starting from zero, but I still treated eWPTv2 as a serious benchmark for web testing depth.</p>
+
+		<h2>Certification Snapshot</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/eWPT score.png" alt="eWPTv2 score report" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">eWPTv2 domain score report</figcaption>
+		</figure>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>certification.txt</span>
+				<span>info</span>
+			</div>
+			<pre><code>Candidate: Mohamed Yassine Bougamra
+Certification: eWPTv2 (INE)
+Credential: Web Application Penetration Tester
+Status: Passed
+Overall Score: 90%</code></pre>
+		</div>
+
+		<h2>Course Review</h2>
+		<p>The training track is long and detailed, but it is worth finishing. What stood out to me was the practical teaching style: less theory-heavy repetition, more real attack flow, tool usage, and decision-making in context. If you stay consistent, this course builds the right mindset for web assessments.</p>
+
+		<h2>Exam Overview</h2>
+		<ul>
+			<li><strong>Duration:</strong> 10 hours</li>
+			<li><strong>Format:</strong> 50 questions (multiple-choice + text input)</li>
+			<li><strong>Environment:</strong> Cloud machine with no internet access, preloaded with required tools and scripts</li>
+			<li><strong>Difficulty:</strong> Structured and fair, but demanding under time pressure</li>
+		</ul>
+
+		<h2>My Strategy</h2>
+		<div class="codeblock">
+			<div class="bar">
+				<span>exam-workflow.md</span>
+				<span>method</span>
+			</div>
+			<pre><code>- Read Letter of Engagement carefully
+- Enumerate each app/domain fully before answering
+- Keep notes per target (auth, endpoints, vulns, creds)
+- Group answers by application to save time
+- Take short breaks to avoid decision fatigue</code></pre>
+		</div>
+
+		<p>I recommend sticking to the core course tooling. You do not need exotic scripts to pass. Solid methodology, accurate notes, and careful validation are usually enough.</p>
+
+		<h2>Key Insights From the eWPT Guide</h2>
+		<p>One important takeaway is that eWPT should be treated as a practical benchmark, not a theory checkpoint. The exam expects you to combine reconnaissance, analysis, exploitation, and validation in a structured workflow. Knowing a tool name is not enough; speed and decision-making under time pressure matter a lot.</p>
+
+		<p>Another strong point is preparation quality. The official INE path gives a solid baseline, but hands-on repetition is what makes the difference. Keeping indexed notes for common payload patterns, fuzzing strategies, authentication attack cases, and web-service findings can save critical minutes during the exam window.</p>
+
+		<p>The guide also emphasizes realistic expectations: passing eWPT shows useful job-ready fundamentals, but it is still one step in a longer growth path. Continued lab practice, stronger methodology, and better reporting discipline are what convert certification success into consistent real-world web pentesting performance.</p>
+
+		<h2>Domain Score Breakdown</h2>
+
+		<h3>Web Application Security Testing (25%)</h3>
+		<p><strong>Domain score:</strong> 90%</p>
+		<ul>
+			<li>Perform bruteforce attacks against login forms</li>
+			<li>Identify and exploit Session Management vulnerabilities</li>
+			<li>Identify and exploit file upload vulnerabilities for remote code execution</li>
+			<li>Identify and exploit command injection vulnerabilities for remote code execution</li>
+			<li>Identify and exploit directory traversal vulnerabilities for information disclosure</li>
+			<li>Identify and exploit Local File Inclusion (LFI) and Remote File Inclusion (RFI) vulnerabilities</li>
+		</ul>
+
+		<h3>Web Application Analysis &amp; Inspection (10%)</h3>
+		<p><strong>Domain score:</strong> 88%</p>
+		<ul>
+			<li>Locate hidden files and directories not accessible through normal browsing</li>
+			<li>Analyze web application structure to identify potential attack vectors</li>
+			<li>Identify technologies or frameworks used by a web application</li>
+			<li>Identify web server technology type and version on a target domain</li>
+			<li>Identify and exploit vulnerabilities caused by improper HTTP method implementation</li>
+		</ul>
+
+		<h3>Information Gathering &amp; Reconnaissance (10%)</h3>
+		<p><strong>Domain score:</strong> 83%</p>
+		<ul>
+			<li>Examine web server metafiles for information exposure</li>
+			<li>Extract data using passive reconnaissance and OSINT techniques</li>
+			<li>Map target organization domains, subdomains, and IP ranges</li>
+		</ul>
+
+		<h3>Web Application Vulnerability Assessment (15%)</h3>
+		<p><strong>Domain score:</strong> 71%</p>
+		<ul>
+			<li>Bypass weak or broken authentication mechanisms</li>
+			<li>Identify information disclosure vulnerabilities</li>
+			<li>Identify and exploit common web server misconfigurations</li>
+			<li>Test for default credentials and weak passwords</li>
+		</ul>
+
+		<h3>Web Application Penetration Testing Methodology (10%)</h3>
+		<p><strong>Domain score:</strong> 100%</p>
+		<ul>
+			<li>Assess web applications using industry-standard methodology</li>
+			<li>Identify vulnerabilities in alignment with OWASP Web Security Testing Guide</li>
+		</ul>
+
+		<h3>Manual Exploitation of Common Web Application Vulnerabilities (20%)</h3>
+		<p><strong>Domain score:</strong> 100%</p>
+		<ul>
+			<li>Exploit vulnerable web services</li>
+			<li>Identify and exploit Stored XSS</li>
+			<li>Identify and exploit Reflected XSS</li>
+			<li>Identify and exploit SQL Injection</li>
+			<li>Enumerate information from web services</li>
+			<li>Extract information and credentials from backend databases</li>
+			<li>Identify and exploit vulnerabilities in content management systems</li>
+		</ul>
+
+		<h2>Final Thoughts</h2>
+		<p>For me, eWPTv2 was an excellent transition from foundational pentesting into deeper web application work. I would not classify it as beginner-easy, but it is very achievable if you complete the labs seriously and stay disciplined during the exam.</p>
+
+		<h2>References</h2>
+		<ul>
+			<li><a href="https://infosecwriteups.com/ewpt-certification-guide-training-exam-resources-career-851ddf9a1ee8" target="_blank" rel="noopener noreferrer">Ultimate Guide to eWPT Certification (InfoSec Write-ups)</a></li>
+			<li><a href="https://portswigger.net/web-security/all-labs" target="_blank" rel="noopener noreferrer">PortSwigger Web Security Academy Labs</a></li>
+			<li><a href="https://github.com/dev-angelist/eWPTv2-Notes/blob/main/ewpt-cheat-sheet.md" target="_blank" rel="noopener noreferrer">eWPTv2 Notes and Cheat Sheet</a></li>
+		</ul>
+
+		<h2>Certification Image</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/eWPT.jfif" alt="eWPT certification" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Official eWPT certification</figcaption>
+		</figure>
+
+		<div style="display:flex;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+			<a href="index.html" class="btn btn-ghost">← All Write-ups</a>
+			<a href="../index.html#certs" class="btn btn-ghost">View My Certifications →</a>
+		</div>
+	</main>
+
+	<footer class="footer" style="z-index:2;position:relative;">
+		<div class="container">
+			<div class="footer-bottom" style="border-top:none;padding-top:0">
+				<p>© 2026 Mohamed Yassine Bougamra</p>
+				<p class="footer-ascii">/* stay paranoid, stay safe */</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/main.js"></script>
+</body>
+</html>

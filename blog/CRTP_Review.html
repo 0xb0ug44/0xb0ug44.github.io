@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>CRTP Review | 0xb0ug44</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/terminal.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+	<div class="scanlines" aria-hidden="true"></div>
+
+	<nav class="nav" id="nav">
+		<div class="nav-logo">
+			<a href="../index.html" style="text-decoration:none;color:inherit">
+				<span class="nav-logo-bracket">[</span>
+				<span class="nav-logo-text">0xb0ug44</span>
+				<span class="nav-logo-bracket">]</span>
+				<span class="nav-cursor">_</span>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="../index.html" class="nav-link">← Back</a></li>
+			<li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+		</ul>
+	</nav>
+
+	<div class="article-header">
+		<div class="container">
+			<div class="blog-meta" style="margin-bottom:1rem">
+				<span class="blog-category cat-net">Active Directory</span>
+				<span class="blog-date">Jun 10, 2026</span>
+			</div>
+			<h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:860px;">
+				CRTP Review: Practical Active Directory Exploitation and Red Team Preparation
+			</h1>
+			<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+				<div style="display:flex;align-items:center;gap:0.5rem">
+					<div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+					<span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+				</div>
+				<div class="blog-tags-row">
+					<span class="btag">CRTP</span>
+					<span class="btag">Active Directory</span>
+					<span class="btag">Certification</span>
+					<span class="btag">Red Team</span>
+					<span class="btag">Review</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="article-content" style="z-index:2;position:relative;">
+		<div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+			⚠️ Note: This review shares my personal exam experience and high-level learning points only. I am not disclosing exam answers or violating certification policy.
+		</div>
+
+		<h2>Overview</h2>
+		<p>Looking to take up the CRTP challenge? Here’s my review and some preparation tips.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>crtp-intro.txt</span>
+				<span>overview</span>
+			</div>
+			<pre><code>CRTP: Certified Red Team Professional
+Credits: Altered Security
+Focus: Pure Windows Active Directory exploitation
+Goal: Learn practical red team methodology</code></pre>
+		</div>
+
+		<h2>Certification Snapshot</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/CRTP.jpg" alt="CRTP certification" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Official CRTP certification</figcaption>
+		</figure>
+
+		<h2>Background</h2>
+		<p>By day, I work on application security and web application penetration testing. I decided to take up the CRTP assessment from Altered Security as a personal challenge and learning opportunity to deepen my Active Directory offensive skills.</p>
+
+		<p>The CRTP offered a unique learning opportunity in these specific areas:</p>
+
+		<ul>
+			<li>A methodology of using PowerShell and Windows command line in a more in-depth manner.</li>
+			<li>Covers even more AD attack vectors, such as abusing ADCS, database links, different types of delegation, domain trust relationships and many more.</li>
+			<li>Pure Windows methodology, no Linux machines involved.</li>
+			<li>Understanding of Microsoft Defender for Endpoint (MDE) and Microsoft Identity Protection (MDI) and bypass techniques.</li>
+		</ul>
+
+		<h2>Course Review</h2>
+		<p>Over the span of 2 months, I spent approximately 3 hours each day after work as well as during the weekends to routinely tackle the course videos and the respective labs. The course videos essentially consisted of recordings of instructor Nikhil Mittal’s lectures, combined with hands-on demos of a full attack chain, commencing from an assumed breached scenario. The hands-on demos were great as the occasional issues encountered by Nikhil when issuing commands were beneficial when troubleshooting future similar problems in our own labs.</p>
+
+		<p>If you wish to skip the videos, there are PDFs and slides that are provided for studying as well. Along the way, I took note of crucial attacks and associated tools and commands within my Notion cheatsheet.</p>
+
+		<p>I encountered occasional technical difficulties when tackling the labs on my student virtual machine but the Altered Security staff were prompt and responsive when I sought assistance via the dedicated Discord channel.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>study-notes.md</span>
+				<span>preparation</span>
+			</div>
+			<pre><code>- Follow the instructor demos closely
+- Capture tool usage and command patterns
+- Keep a structured cheat sheet in Notion
+- Use the slides and PDFs as backups
+- Ask for help quickly when the lab VM misbehaves</code></pre>
+		</div>
+
+		<h2>Exam Tips</h2>
+		<p>I undertook the CRTP assessment and promptly submitted my report upon completion of the exam. Within a business week, I received official confirmation of my successful certification.</p>
+
+		<h3>Thorough Enumeration</h3>
+		<p>CRTP is focused on weaponizing misconfigurations within an Active Directory environment, rather than hunting for one-off, easily patched software vulnerabilities. Thus, extremely thorough enumeration becomes even more crucial for us as an attacker to plan out a viable attack path: machine configurations, mapping of trusts, listing down group policies, accessible machines, available tickets, delegations, services, user privileges and much more. It also explains why taking notes during your studies and having a cheat sheet would be essential to allow us to methodically assess the AD environment.</p>
+
+		<h3>Tools and Transfers</h3>
+		<p>Note that no tools are provided out of the box from the provided attacker machine. Hence, prepare your arsenal of functional scripts and binaries before starting the exam, and be familiar with multiple ways of transferring them between Windows machines. Do not let chores like tool transfer and simply trying to get them working properly become your downfall. Sometimes one way of transferring may not be viable and may fail for some scenarios, so do not rely on one technique of file transfer.</p>
+
+		<h3>Google It</h3>
+		<p>Copying and pasting instructions directly from your cheatsheet or from the lab manual will not work in several situations. Do a quick online search and understand the limitations of your tools, the thought process behind a command, and any posts on blogs or forums for resolving issues of a similar nature. Being proficient at on-the-spot research and troubleshooting will certainly help you successfully complete the CRTP assessment.</p>
+
+		<h3>Right Before Your Eyes</h3>
+		<p>Make sure to carefully read the results of commands. Sometimes, the stepping stone to laterally move to the next machine was right in front of my eyes yet I continued pursuing other potential avenues of attack simply due to overlooking those nuggets of information.</p>
+
+		<h3>When in Doubt, Restart</h3>
+		<p>After running commands against certain machines in the exam environment, I encountered responsiveness issues or was not receiving expected results. To tackle this, we are given the option to restart individual machines throughout the exam and it was most certainly a lifesaver in these scenarios.</p>
+
+		<h3>Diligently Screenshot</h3>
+		<p>Take lots of screenshots. With the number of terminals that may be open at once, I sometimes lose track of the steps taken to reach a certain stage of an attack. To save you from the pain of having to backtrack several times, it may be helpful to routinely take screenshots of every important command issued, together with the response. The screenshots also come in handy when crafting your detailed report for submission to Altered Security for grading.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>exam-checklist.sh</span>
+				<span>tips</span>
+			</div>
+			<pre><code>1. Enumerate every machine and trust relationship
+2. Track all credentials, tickets, and delegations
+3. Prepare file transfer options before the exam starts
+4. Search for command failures before retrying blindly
+5. Restart machines if they stop responding
+6. Screenshot every meaningful step for the report</code></pre>
+		</div>
+
+		<h2>Helpful Resources</h2>
+		<p>The course by Altered Security itself was sufficient to tackle the CRTP exam. However, when troubleshooting issues, several external resources were lifesavers for me.</p>
+
+		<ul>
+			<li>Microsoft documentation for PowerShell, Active Directory, and delegation concepts.</li>
+			<li>Community blog posts for command troubleshooting and attack-path validation.</li>
+			<li>Cheat sheets for Kerberoasting, AS-REP Roasting, ADCS abuse, and trust enumeration.</li>
+			<li>Personal notes and screenshots from the labs to keep the workflow consistent.</li>
+		</ul>
+
+		<h2>Conclusion</h2>
+		<p>The CRTP was a strong and focused Active Directory challenge that pushed me to think more carefully about Windows-only attack paths, precise enumeration, and operational discipline. It gave me a much better feel for how red team work looks in a realistic enterprise environment.</p>
+
+		<p>If you want to level up your AD methodology, CRTP is worth the effort. The course and exam sharpened my practical command-line workflow, pivoting mindset, and troubleshooting habits.</p>
+
+		<h2>Key Takeaways</h2>
+		<ul>
+			<li>Thorough enumeration drives the whole attack path.</li>
+			<li>PowerShell fluency matters more than you think.</li>
+			<li>Multiple file transfer methods are mandatory.</li>
+			<li>Good notes and screenshots make exam reporting much easier.</li>
+			<li>Restarting a stuck machine can save hours of frustration.</li>
+		</ul>
+
+		<div style="display:flex;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+			<a href="index.html" class="btn btn-ghost">← All Write-ups</a>
+			<a href="../index.html#certs" class="btn btn-ghost">View My Certifications →</a>
+		</div>
+	</main>
+
+	<footer class="footer" style="z-index:2;position:relative;">
+		<div class="container">
+			<div class="footer-bottom" style="border-top:none;padding-top:0">
+				<p>© 2026 Mohamed Yassine Bougamra</p>
+				<p class="footer-ascii">/* stay paranoid, stay safe */</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/main.js"></script>
+</body>
+</html>

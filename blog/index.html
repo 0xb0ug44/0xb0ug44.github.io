@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Write-ups | 0xb0ug44</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">0xb0ug44</span>
+        <span class="nav-logo-bracket">]</span>
+        <span class="nav-cursor">_</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html#home" class="nav-link"><span class="nav-num">01.</span> Home</a></li>
+      <li><a href="../index.html#projects" class="nav-link"><span class="nav-num">03.</span> Projects</a></li>
+      <li><a href="../index.html#certs" class="nav-link"><span class="nav-num">04.</span> Certs</a></li>
+      <li><a href="index.html" class="nav-link" style="color:var(--green)"><span class="nav-num">05.</span> Blog</a></li>
+      <li><a href="../index.html#contact" class="nav-link"><span class="nav-num">06.</span> Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page header -->
+  <div style="padding:7rem 0 3rem;background:var(--bg-1);border-bottom:1px solid var(--border);position:relative;z-index:2;">
+    <div class="container">
+      <div class="hero-badge" style="margin-bottom:1rem">
+        <span class="badge-dot"></span>
+        <span>Security Research &amp; Write-ups</span>
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:3px;margin-bottom:0.75rem;">
+        Technical <span class="accent" style="color:var(--green)">Write-ups</span>
+      </h1>
+      <p style="color:var(--text-secondary);max-width:600px;font-size:1.05rem;">
+        In-depth explorations of certification reviews, hands-on lab and room walkthroughs, red team techniques, and security research.
+        All findings are responsibly disclosed.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" style="z-index:2;position:relative;">
+    <div class="container">
+
+      <div class="projects-filter" style="margin-bottom:2.5rem">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Certification">Certification Reviews</button>
+        <button class="filter-btn" data-filter="Lab Walkthroughs">Lab Walkthroughs</button>
+      </div>
+
+
+      <div class="blog-list">
+
+
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Sep 17, 2026</span>
+          </div>
+          <h2><a href="CPENT_Review.html">CPENT Review: Exam Experience, Score, Playground Zones, and Practical Lessons</a></h2>
+          <p>A practical review of the EC-Council CPENT assessment, including the 82.4% result, exam zones, reporting requirements, preparation advice, and lessons from the playground.</p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">CPENT</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="CPENT_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Jul 22, 2026</span>
+          </div>
+          <h2><a href="CRTE_Review.html">CRTE Review: Multi-Domain Active Directory Red Teaming and Exam Lessons</a></h2>
+          <p>A detailed look at the CRTE path: multi-forest AD abuse, delegation and trust attacks, defensive evasion, Sliver C2 practice, and the exam habits that mattered most.
+          </p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">CRTE</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="CRTE_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Jun 10, 2026</span>
+          </div>
+          <h2><a href="CRTP_Review.html">CRTP Review: Practical Active Directory Exploitation and Red Team Preparation</a></h2>
+          <p>A focused look at my CRTP journey: deep Windows enumeration, AD attack paths, PowerShell methodology, delegation abuse, file transfer discipline, and the habits that made the exam manageable.
+          </p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">CRTP</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="CRTP_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Apr 27, 2026</span>
+          </div>
+          <h2><a href="eWPTXv3_Review.html">eWPTXv3 Review: Advanced Web Exploitation, Attack Chaining, and Practical Lessons</a></h2>
+          <p>A focused breakdown of my eWPTX journey: advanced web vulnerability exploitation, authentication bypass testing,
+            server-side attack paths, and methodology that matters in high-complexity environments.
+          </p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">eWPTX</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="eWPTXv3_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+                <article class="blog-list-item" data-category="Lab Walkthroughs">
+          <div class="blog-meta">
+            <span class="blog-category cat-web">Lab Walkthrough</span>
+            <span class="blog-date">Apr 10, 2026</span>
+          </div>
+          <h2><a href="HA_Joker_CTF.html">HA Joker CTF: From Web Enumeration to Root Through LXD</a></h2>
+          <p>A full TryHackMe walkthrough covering service discovery, authenticated web enumeration, credential reuse, CMS exploitation, a reverse shell, and the final LXD privilege-escalation path.</p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">TryHackMe</span><span class="btag">CTF</span><span class="btag">LXD</span>
+            </div>
+            <a href="HA_Joker_CTF.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Mar 28, 2026</span>
+          </div>
+          <h2><a href="eCPPTv3_Review.html">eCPPTv3 Review: From Theory to Real-World Penetration Testing Mastery</a></h2>
+          <p>A hands-on journey through the eCPPTv3, bridging the gap between theoretical knowledge and real-world offensive security skills.
+            Learn what it takes to think, adapt, and operate like a real-world attacker.
+          </p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">eCPPT</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="eCPPTv3_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Oct 12, 2025</span>
+          </div>
+          <h2><a href="eWPTv2_Review.html">eWPTv2 Review: Exam Insights, Detailed Score Breakdown, and Lessons Learned</a></h2>
+          <p>A complete breakdown of the eWPT certification covering exam structure, preparation strategy, and real-world expectations.
+Explore how this certification strengthens web application penetration testing skills and career opportunities.</p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">eWPT</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="eWPTv2_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-list-item" data-category="Certification">
+          <div class="blog-meta">
+            <span class="blog-category cat-net">Certification</span>
+            <span class="blog-date">Sep 8, 2025</span>
+          </div>
+          <h2><a href="eJPTv2_Review.html">eJPTv2 Review: My Exam Experience, Score Breakdown, and Lessons Learned</a></h2>
+          <p>An original review of my eJPTv2 journey, including preparation approach, exam strategy, and final score insights.</p>
+          <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+            <div class="blog-tags-row">
+              <span class="btag">eJPT</span><span class="btag">Certification</span><span class="btag">Review</span>
+            </div>
+            <a href="eJPTv2_Review.html" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+                <article class="blog-list-item" data-category="Lab Walkthroughs">
+                  <div class="blog-meta">
+                    <span class="blog-category cat-web">Lab Walkthrough</span>
+                    <span class="blog-date">Sep 3, 2025</span>
+                  </div>
+                  <h2><a href="Anonymous_TryHackMe.html">Anonymous TryHackMe Walkthrough: From FTP Access to Root</a></h2>
+                  <p>A practical walkthrough covering Nmap and SMB enumeration, anonymous FTP access, a reverse shell, user and root flag collection, and privilege escalation through a SUID binary.</p>
+                  <div class="blog-footer" style="border-top:none;padding-top:0;margin-top:0.75rem">
+                    <div class="blog-tags-row">
+                      <span class="btag">TryHackMe</span><span class="btag">FTP</span><span class="btag">Privilege Escalation</span>
+                    </div>
+                    <a href="Anonymous_TryHackMe.html" class="read-more">Read More →</a>
+                  </div>
+                </article>
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2026 Mohamed Yassine Bougamra · <a href="../index.html" style="color:var(--green)">← Back to Portfolio</a></p>
+        <p class="footer-ascii">/* stay paranoid, stay safe */</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/particles.js"></script>
+  <script src="../js/main.js"></script>
+  <style>
+    .blog-list { display: flex; flex-direction: column; gap: 0; }
+    .blog-list-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+    .blog-list-item:first-child { border-top: 1px solid var(--border); }
+    .blog-list-item h2 {
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0.5rem 0 0.5rem;
+    }
+    .blog-list-item h2 a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .blog-list-item h2 a:hover { color: var(--green); }
+    .blog-list-item p { color: var(--text-secondary); font-size: 0.95rem; }
+    .blog-list-item:hover { padding-left: 1rem; }
+  </style>
+</body>
+</html>

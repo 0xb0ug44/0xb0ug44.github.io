@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>eWPTXv3 Review | 0xb0ug44</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/terminal.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+	<div class="scanlines" aria-hidden="true"></div>
+
+	<nav class="nav" id="nav">
+		<div class="nav-logo">
+			<a href="../index.html" style="text-decoration:none;color:inherit">
+				<span class="nav-logo-bracket">[</span>
+				<span class="nav-logo-text">0xb0ug44</span>
+				<span class="nav-logo-bracket">]</span>
+				<span class="nav-cursor">_</span>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="../index.html" class="nav-link">← Back</a></li>
+			<li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+		</ul>
+	</nav>
+
+	<div class="article-header">
+		<div class="container">
+			<div class="blog-meta" style="margin-bottom:1rem">
+				<span class="blog-category cat-web">Web Application Security</span>
+				<span class="blog-date">Apr 27, 2026</span>
+			</div>
+			<h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:860px;">
+				eWPTXv3 Review: Advanced Web Exploitation, Real-World Attack Chaining, and Lessons Learned
+			</h1>
+			<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+				<div style="display:flex;align-items:center;gap:0.5rem">
+					<div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+					<span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+				</div>
+				<div class="blog-tags-row">
+					<span class="btag">eWPTX</span>
+					<span class="btag">Web Security</span>
+					<span class="btag">Advanced Pentesting</span>
+					<span class="btag">Certification</span>
+					<span class="btag">Review</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="article-content" style="z-index:2;position:relative;">
+
+		<div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+			⚠️ Note: This write-up reflects my preparation approach and learning outcomes only. No exam answers or sensitive details are disclosed.
+		</div>
+
+		<h2>Overview</h2>
+		<p>I'm excited to share that I officially earned the <strong>eWPTX (eLearnSecurity Web Application Penetration Tester eXtreme)</strong> certification from INE.</p>
+
+		<p>This achievement marks a major milestone in my cybersecurity journey, with a strong focus on advanced web application penetration testing and high-complexity attack scenarios. eWPTX is widely recognized as a high-level, fully hands-on certification for penetration testers who want to master sophisticated exploitation techniques and advanced offensive methodologies.</p>
+
+		<h2>Certification Snapshot</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/eWPTX.jfif" alt="eWPTX certification" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Official eWPTX certification from INE</figcaption>
+		</figure>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>certification.txt</span>
+				<span>info</span>
+			</div>
+			<pre><code>Candidate: Mohamed Yassine Bougamra
+Certification: eWPTX (INE)
+Credential: Web Application Penetration Tester eXtreme
+Status: Passed
+Focus: Advanced web exploitation and vulnerability chaining</code></pre>
+		</div>
+
+		<h2>Why eWPTX?</h2>
+		<p>I chose eWPTX to challenge myself with deep, technical penetration tests against modern and hardened web applications. This certification goes far beyond foundational testing by emphasizing realistic attack chains, advanced manual exploitation, and bypassing enterprise-grade security controls.</p>
+
+		<h2>Key Takeaways</h2>
+		<p>Throughout this journey, I significantly strengthened my skills in the areas below:</p>
+
+		<h3>Advanced Web Exploitation</h3>
+		<p>Exploiting complex vulnerabilities such as advanced SQL Injection, NoSQL Injection, SSTI, and application logic flaws that require careful payload engineering and context-aware testing.</p>
+
+		<h3>Authentication and Authorization Attacks</h3>
+		<p>Breaking hardened authentication flows, testing JWT weaknesses, and performing privilege escalation through access-control bypass techniques.</p>
+
+		<h3>API Penetration Testing</h3>
+		<p>Testing REST and GraphQL endpoints for high-impact flaws such as broken object-level authorization (BOLA/IDOR), broken function-level authorization, mass assignment, weak rate limiting, and token validation issues. This area was critical because modern applications expose major attack surface through APIs, and robust testing requires both business-logic understanding and precise request manipulation.</p>
+
+		<h3>Server-Side Attacks</h3>
+		<p>Leveraging SSRF, advanced file inclusion vectors, insecure deserialization, and remote code execution opportunities in realistic scenarios.</p>
+
+		<h3>Vulnerability Chaining</h3>
+		<p>Combining multiple low-impact vulnerabilities into complete attack paths to achieve meaningful compromise and demonstrate business impact.</p>
+
+		<h2>Tools and Resources</h2>
+		<p>During both preparation and the exam, I relied on a mix of proven tooling and custom techniques:</p>
+
+		<ul>
+			<li><strong>Burp Suite Professional:</strong> Advanced manual testing and request manipulation</li>
+			<li><strong>Kali Linux:</strong> Primary offensive security environment</li>
+			<li><strong>OWASP ZAP:</strong> Automated checks and traffic analysis support</li>
+			<li><strong>SQLMap / NoSQLMap:</strong> Assisting complex injection validation</li>
+			<li><strong>FFUF / DirBuster:</strong> Fuzzing and endpoint discovery</li>
+			<li><strong>Custom Scripts (Python, Bash):</strong> Tailored payloads and focused automation</li>
+		</ul>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>practice-stack.md</span>
+				<span>resources</span>
+			</div>
+			<pre><code>- INE official learning path and labs
+- PortSwigger Web Security Academy labs
+- Repeated manual exploitation drills
+- Structured personal notes for attack workflows
+- Payload iteration with Burp Repeater and Intruder</code></pre>
+		</div>
+
+		<h2>Challenges Faced</h2>
+		<p>The eWPTX exam is known for its difficulty and it absolutely lives up to that reputation. I often had to work against heavily protected environments, craft payloads manually, and chain vulnerabilities to reach full compromise.</p>
+
+		<p>In many cases, automated tools alone were not enough. Success required deep technical understanding, persistence, and creativity under pressure.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>checks-and-observations.txt</span>
+				<span>field-notes</span>
+			</div>
+			<pre><code>Username Enumeration
+- Weak lockout mechanisms can allow controlled brute-force attempts
+
+2FA Bypass Testing
+- Test whether a valid OTP can be reused across sessions
+- Test parameter tampering paths that skip OTP verification logic
+
+JWT Testing
+- Decode and inspect token structure
+- Validate signature handling and algorithm enforcement
+
+Session Risks
+- Hijacking: reuse stolen session cookies if controls are weak
+- Fixation: force predictable or attacker-controlled session states
+
+Cookie Flags
+- HttpOnly: limits JavaScript access to session cookies
+- Secure: enforces HTTPS transport
+- SameSite: reduces CSRF risk</code></pre>
+		</div>
+
+		<h2>Conclusion</h2>
+		<p>Earning eWPTX has been one of the most challenging and rewarding experiences in my cybersecurity journey. It significantly strengthened my expertise in advanced web exploitation and prepared me to handle complex, real-world penetration testing engagements with greater confidence.</p>
+
+		<h2>References</h2>
+		<ul>
+			<li><a href="https://portswigger.net/web-security/all-labs" target="_blank" rel="noopener noreferrer">PortSwigger Web Security Academy Labs</a></li>
+			<li><a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">PortSwigger Web Security Academy Topics</a></li>
+			<li><a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener noreferrer">OWASP Web Security Testing Guide</a></li>
+		</ul>
+
+		<div style="display:flex;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+			<a href="index.html" class="btn btn-ghost">← All Write-ups</a>
+			<a href="../index.html#certs" class="btn btn-ghost">View My Certifications →</a>
+		</div>
+	</main>
+
+	<footer class="footer" style="z-index:2;position:relative;">
+		<div class="container">
+			<div class="footer-bottom" style="border-top:none;padding-top:0">
+				<p>© 2026 Mohamed Yassine Bougamra</p>
+				<p class="footer-ascii">/* stay paranoid, stay safe */</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/main.js"></script>
+</body>
+</html>
