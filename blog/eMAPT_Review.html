@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eMAPT Review | 0xb0ug44</title>
+  <meta name="description" content="A practical eMAPT review covering the exam structure, Android and iOS testing workflow, preparation strategy, and lessons learned." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">0xb0ug44</span>
+        <span class="nav-logo-bracket">]</span>
+        <span class="nav-cursor">_</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">← Back</a></li>
+      <li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+    </ul>
+  </nav>
+
+  <div class="article-header">
+    <div class="container">
+      <div class="blog-meta" style="margin-bottom:1rem">
+        <span class="blog-category cat-net">Certification</span>
+        <span class="blog-date">Oct 17, 2026</span>
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:900px;">
+        eMAPT Review: Exam Structure, Mobile Testing Workflow, and Preparation Advice
+      </h1>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+        </div>
+        <div class="blog-tags-row">
+          <span class="btag">eMAPT</span>
+          <span class="btag">Mobile Security</span>
+          <span class="btag">Android</span>
+          <span class="btag">iOS</span>
+          <span class="btag">Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-content" style="z-index:2;position:relative;">
+    <div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+      ⚠️ Note: This review shares my personal experience and high-level lessons only. It does not disclose exam answers or restricted certification material.
+    </div>
+
+    <p>Mobile applications have become one of the most important attack surfaces in modern security. Testing them shares many ideas with web application testing, but the workflow is different. You have to understand the application package, the device, the runtime, and the backend together, because a weakness in any one of them can compromise the others.</p>
+
+    <p>That is why I decided to take the <strong>eLearnSecurity Mobile Application Penetration Tester (eMAPT)</strong> certification. I wanted to measure my mobile security skills and see how close the exam was to a real mobile application assessment.</p>
+
+    <h2>Certification Snapshot</h2>
+    <figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+      <img src="../certifications/eMAPT.jpg" alt="eMAPT certification issued to Mohamed Yassine Bougamra" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+      <figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">eMAPT certification</figcaption>
+    </figure>
+
+    <div class="codeblock">
+      <div class="bar">
+        <span>eMAPT-overview.txt</span>
+        <span>certification</span>
+      </div>
+      <pre><code>Certification: eLearnSecurity Mobile Application Penetration Tester
+Main focus: Android and iOS application security testing
+Assessment style: Questions, code review, and practical testing
+Level: Beginner to intermediate</code></pre>
+    </div>
+
+    <h2>What Is eMAPT?</h2>
+    <p>eMAPT is a practical certification for people who want to test mobile applications. The main focus is Android, but the practical work also includes iOS applications. It checks whether you can understand an app, find weaknesses, and connect mobile behavior with API and backend security.</p>
+
+    <p>The main areas include:</p>
+    <ul>
+      <li>Static analysis and APK reverse engineering</li>
+      <li>Dynamic analysis and runtime testing</li>
+      <li>Traffic interception with tools such as Burp Suite or mitmproxy</li>
+      <li>Common mobile application vulnerabilities</li>
+      <li>Android application structure and security controls</li>
+      <li>API and backend security testing</li>
+    </ul>
+
+    <h2>Exam Structure</h2>
+    <h3>1. Situational Questions</h3>
+    <p>The first part contains scenario-based multiple-choice questions. These questions mainly check basic concepts, security practices, and your understanding of common mobile testing situations. The training material should give you a good base for this section.</p>
+
+    <h3>2. Static Analysis</h3>
+    <p>In the second part, you review code snippets, usually written in Java, and look for security problems. The important skill here is not just knowing Java syntax. You must understand what the code does and recognize insecure patterns quickly.</p>
+
+    <h3>3. Practical Assessment</h3>
+    <p>The practical part is the main part of the exam. You work with several applications and investigate them as a mobile penetration tester. The environment includes Android APK files and iOS IPA files.</p>
+
+    <h2>Android Testing Workflow</h2>
+    <p>For Android, I would begin by obtaining the APK from the emulator and reviewing it with tools such as <strong>jadx</strong>. Static analysis helps you understand the application before you start changing or intercepting its behavior.</p>
+
+    <p>At runtime, mobile applications may use protections that make testing more difficult. Two common examples are:</p>
+    <ul>
+      <li>Root detection</li>
+      <li>SSL certificate pinning</li>
+    </ul>
+
+    <p>Frida is useful for observing and modifying application behavior during testing. Depending on the situation, you may write a small script or adapt a known technique. The important point is to understand what the protection is doing instead of blindly using a bypass script.</p>
+
+    <p>After gaining a clearer view of the application, the work often moves toward authentication and the backend:</p>
+    <ul>
+      <li>Reviewing login and authorization logic</li>
+      <li>Mapping API requests and responses</li>
+      <li>Finding undocumented endpoints</li>
+      <li>Changing requests to test access control and data exposure</li>
+    </ul>
+
+    <h2>iOS Testing Workflow</h2>
+    <p>For iOS, the process starts with unpacking the IPA and performing static analysis. During this step, you may find information such as hardcoded keys, API routes, or functionality that is not visible in the normal user interface.</p>
+
+    <p>The next step is to interact with the discovered endpoints and test their parameters. A supplied wordlist can help with controlled fuzzing, while the API responses often provide useful clues for the next part of the investigation.</p>
+
+    <p>Small scripts can also save time when you need to collect values from many responses. In some cases, further investigation may reveal credentials or remote access details. These findings should be validated carefully and used only inside the authorized exam environment.</p>
+
+    <h2>Difficulty and Reality Check</h2>
+    <p>eMAPT may look simple if you already have web penetration testing experience. However, the mobile context adds several challenges:</p>
+    <ul>
+      <li>Application logic can be difficult to follow.</li>
+      <li>Decompiled code may be unclear or partly obfuscated.</li>
+      <li>The real application behavior may differ from what the code first suggests.</li>
+      <li>The exam gives limited guidance, so you need a methodical process.</li>
+    </ul>
+
+    <p>I would describe the certification as challenging but fair. It is not an expert-level exam, but it is also not something to attempt without hands-on preparation.</p>
+
+    <h2>How I Would Prepare</h2>
+    <h3>Build the Fundamentals</h3>
+    <ul>
+      <li>Learn the role of Android Activities, Services, and Broadcast Receivers.</li>
+      <li>Understand APK structure and how to read the Android manifest.</li>
+      <li>Study common mobile vulnerabilities through the OWASP Mobile Top 10.</li>
+    </ul>
+
+    <h3>Practice the Workflow</h3>
+    <ul>
+      <li>Decompile and inspect APKs with jadx and apktool.</li>
+      <li>Intercept mobile traffic with Burp Suite or mitmproxy.</li>
+      <li>Practice on an emulator or a legally rooted test device.</li>
+      <li>Use Frida to understand runtime behavior and security controls.</li>
+    </ul>
+
+    <h3>Use Real Practice Labs</h3>
+    <p>Do not only watch demonstrations. The free labs and learning material from <a href="https://www.mobilehackinglab.com/hacking-labs" target="_blank" rel="noopener noreferrer">Mobile Hacking Lab</a> are useful for building a repeatable workflow across Android and iOS challenges. Their <a href="https://www.youtube.com/@MobileHackingLab" target="_blank" rel="noopener noreferrer">YouTube channel</a> is also helpful when you need to see how a mobile tester approaches a problem.</p>
+
+    <p><a href="https://app.hextree.io/map" target="_blank" rel="noopener noreferrer">Hextree's Hexmap</a> is another good practice resource. It organizes security topics into a learning path, similar to the way PortSwigger Academy helps web security learners. Use these platforms to understand why a weakness exists, not just to copy a command.</p>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+      <li>Depending too much on automated tools.</li>
+      <li>Skipping static analysis and starting with random runtime testing.</li>
+      <li>Testing requests without first understanding the application's logic.</li>
+      <li>Spending too long on one lead and losing track of time.</li>
+      <li>Failing to keep clear notes about endpoints, findings, and evidence.</li>
+    </ul>
+
+    <h2>Is eMAPT Worth It?</h2>
+    <p><strong>eMAPT is a good choice if you:</strong></p>
+    <ul>
+      <li>Want to start working in mobile application security.</li>
+      <li>Already have basic penetration testing experience.</li>
+      <li>Prefer a practical assessment over a purely theoretical exam.</li>
+    </ul>
+
+    <p><strong>It may not be the best first choice if you:</strong></p>
+    <ul>
+      <li>Are looking for an advanced mobile research certification.</li>
+      <li>Have no background in application security.</li>
+      <li>Prefer exams that focus mostly on memorization.</li>
+    </ul>
+
+    <h2>Final Verdict</h2>
+    <p>eMAPT is a solid beginner-to-intermediate certification for mobile application penetration testing. It will not make you an expert by itself, but it gives you a useful foundation and introduces a realistic mobile testing workflow.</p>
+
+    <p>If you already work with web applications and want to understand Android and iOS attack surfaces, eMAPT is a good next step. Combine the certification material with regular practice labs, careful note-taking, and a clear testing methodology. That is where the real value comes from.</p>
+
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.mobilehackinglab.com/hacking-labs" target="_blank" rel="noopener noreferrer">Mobile Hacking Lab — Hacking Labs</a></li>
+      <li><a href="https://www.youtube.com/@MobileHackingLab" target="_blank" rel="noopener noreferrer">Mobile Hacking Lab — YouTube channel</a></li>
+      <li><a href="https://app.hextree.io/map" target="_blank" rel="noopener noreferrer">Hextree — The Hexmap</a></li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2026 Mohamed Yassine Bougamra · <a href="../index.html" style="color:var(--green)">← Back to Portfolio</a></p>
+        <p class="footer-ascii">/* stay paranoid, stay safe */</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/particles.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

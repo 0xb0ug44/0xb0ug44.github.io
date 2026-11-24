@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attacktive Directory Walkthrough | 0xb0ug44</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/terminal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit">
+        <span class="nav-logo-bracket">[</span>
+        <span class="nav-logo-text">0xb0ug44</span>
+        <span class="nav-logo-bracket">]</span>
+        <span class="nav-cursor">_</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">← Back</a></li>
+      <li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+    </ul>
+  </nav>
+
+  <div class="article-header">
+    <div class="container">
+      <div class="blog-meta" style="margin-bottom:1rem">
+        <span class="blog-category cat-web">Lab Walkthrough</span>
+        <span class="blog-date">February 23, 2026</span>
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:800px;">
+        Attacktive Directory: From Kerberos Enumeration to Domain Admin
+      </h1>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+        </div>
+        <div class="blog-tags-row">
+          <span class="btag">TryHackMe</span>
+          <span class="btag">Active Directory</span>
+          <span class="btag">Kerberos</span>
+          <span class="btag">SMB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="article-content" style="z-index:2;position:relative;">
+    <div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+      ⚠️ Spoiler warning: this post contains the complete solution for the Attacktive Directory room. Try the room yourself first if you want to solve it without hints.
+    </div>
+
+    <p>Attacktive Directory is an introductory Active Directory room that demonstrates how small enumeration mistakes can become a complete domain compromise. The attack chain moves from exposed Windows services to Kerberos user discovery, an AS-REP roastable account, sensitive data in an SMB share, and finally administrator access.</p>
+
+    <p>If you want to try the room yourself, you can access it on <a href="https://tryhackme.com/room/attacktivedirectory" target="_blank" rel="noopener noreferrer" style="color:var(--green)">TryHackMe: Attacktive Directory</a>.</p>
+
+    <p>This is the route I followed against the room target. Replace <code>&lt;target-ip&gt;</code> with the address assigned by TryHackMe and keep the lab scope in mind throughout the exercise.</p>
+
+    <h2>Step 1: Mapping the Domain Controller</h2>
+    <p>I started with a full TCP scan and service detection. Active Directory attacks depend heavily on the services exposed by the domain controller, so I did not limit the scan to the common web ports.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>recon.sh</span><span>nmap</span></div>
+      <pre><code>nmap -sC -sV -p- -T4 &lt;target-ip&gt;</code></pre>
+    </div>
+
+    <p>The result identified a Windows domain controller, with DNS, Kerberos, LDAP, SMB, and WinRM among the important services. The room uses the domain <code>spookysec.local</code>, so I added the target to my local hosts file for tools that expect a hostname.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>hosts.txt</span><span>dns</span></div>
+      <pre><code>&lt;target-ip&gt; spookysec.local</code></pre>
+    </div>
+
+    <h2>Step 2: Enumerating Domain Users with Kerberos</h2>
+    <p>Kerberos accepts username requests before authentication is complete. That makes it possible to validate a candidate username list without guessing passwords.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>user-enum.sh</span><span>kerbrute</span></div>
+      <pre><code>kerbrute userenum --dc &lt;target-ip&gt; -d spookysec.local users.txt</code></pre>
+    </div>
+
+    <p>The enumeration returned several valid domain accounts. I saved those names because they could be used for targeted Kerberos requests and later credential testing.</p>
+
+    <h2>Step 3: Finding an AS-REP Roastable Account</h2>
+    <p>Some domain accounts do not require Kerberos pre-authentication. When that setting is enabled, the Key Distribution Center returns material that can be cracked offline without knowing the user's password.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>asrep-roast.sh</span><span>impacket</span></div>
+      <pre><code>GetNPUsers.py spookysec.local/ -dc-ip &lt;target-ip&gt; -usersfile users.txt -format hashcat -outputfile asrep.hashes</code></pre>
+    </div>
+
+    <p>One account returned an AS-REP hash. I moved the cracking step offline and did not send password guesses to the domain controller.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>crack.sh</span><span>hashcat</span></div>
+      <pre><code>hashcat -m 18200 asrep.hashes /usr/share/wordlists/rockyou.txt</code></pre>
+    </div>
+
+    <p>The recovered credential belonged to a low-privileged service account. It was enough to authenticate to SMB and enumerate the shares that were not available anonymously.</p>
+
+    <h2>Step 4: Searching SMB Shares</h2>
+    <p>I listed the shares with the recovered account, then connected to the interesting backup share.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>smb-enum.sh</span><span>smbclient</span></div>
+      <pre><code>smbclient -L //&lt;target-ip&gt; -U &lt;user&gt;
+smbclient //&lt;target-ip&gt;/backup -U &lt;user&gt;
+ls
+get backup_credentials.txt</code></pre>
+    </div>
+
+    <p>The share contained a file with another set of domain credentials. This is a useful reminder that read access to a backup share can be as valuable as an executable foothold: configuration files and scripts often preserve passwords that have been reused elsewhere.</p>
+
+    <h2>Step 5: Reusing the Recovered Credentials</h2>
+    <p>I tested the new credentials against the domain services identified during reconnaissance. The account had stronger access than the original service account and could be used to request the domain's credential material.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>secrets.sh</span><span>impacket</span></div>
+      <pre><code>secretsdump.py spookysec.local/&lt;user&gt;:&lt;password&gt;@&lt;target-ip&gt;</code></pre>
+    </div>
+
+    <p>The dump exposed NTLM hashes for domain accounts, including the built-in administrator. I treated the hashes as sensitive lab output and stored them locally rather than including them in this walkthrough.</p>
+
+    <h2>Step 6: Accessing the Domain Controller</h2>
+    <p>After confirming that the administrator hash could authenticate to the available remote-management service, I used the recovered administrator credential to obtain an interactive session.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>remote-access.sh</span><span>evil-winrm</span></div>
+      <pre><code>evil-winrm -i &lt;target-ip&gt; -u Administrator -H &lt;administrator-ntlm-hash&gt;</code></pre>
+    </div>
+
+    <p>The session ran with domain-administrator privileges. From there I verified the account context and collected the final room artifacts from the locations specified by the questions.</p>
+
+    <div class="codeblock">
+      <div class="bar"><span>verify.ps1</span><span>powershell</span></div>
+      <pre><code>whoami
+hostname
+dir C:\Users\Administrator\Desktop</code></pre>
+    </div>
+
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li>Full service enumeration is especially important against domain controllers.</li>
+      <li>Kerberos user enumeration can reveal valid accounts without password spraying.</li>
+      <li>AS-REP roasting turns a configuration weakness into an offline cracking opportunity.</li>
+      <li>SMB shares should be checked for backups, scripts, and credentials after every valid login.</li>
+      <li>Password reuse can turn a low-privileged service account into a path to domain compromise.</li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2026 Mohamed Yassine Bougamra · <a href="index.html" style="color:var(--green)">← Back to Write-ups</a></p>
+        <p class="footer-ascii">/* enumerate everything, trust nothing */</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

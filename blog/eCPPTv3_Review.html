@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>eCPPTv3 Review | 0xb0ug44</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/terminal.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+	<div class="scanlines" aria-hidden="true"></div>
+
+	<nav class="nav" id="nav">
+		<div class="nav-logo">
+			<a href="../index.html" style="text-decoration:none;color:inherit">
+				<span class="nav-logo-bracket">[</span>
+				<span class="nav-logo-text">0xb0ug44</span>
+				<span class="nav-logo-bracket">]</span>
+				<span class="nav-cursor">_</span>
+			</a>
+		</div>
+		<ul class="nav-links">
+			<li><a href="../index.html" class="nav-link">← Back</a></li>
+			<li><a href="index.html" class="nav-link" style="color:var(--green)">All Write-ups</a></li>
+		</ul>
+	</nav>
+
+	<div class="article-header">
+		<div class="container">
+			<div class="blog-meta" style="margin-bottom:1rem">
+				<span class="blog-category cat-web">Penetration Testing</span>
+				<span class="blog-date">Mar 28, 2026</span>
+			</div>
+			<h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:2px;margin-bottom:1rem;line-height:1.3;max-width:860px;">
+				eCPPTv3 Review: From Theory to Real-World Penetration Testing Mastery
+			</h1>
+			<div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+				<div style="display:flex;align-items:center;gap:0.5rem">
+					<div style="width:32px;height:32px;border-radius:50%;background:var(--green-glow);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--green)">MY</div>
+					<span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary)">Mohamed Yassine Bougamra</span>
+				</div>
+				<div class="blog-tags-row">
+					<span class="btag">eCPPT</span>
+					<span class="btag">Advanced Pentesting</span>
+					<span class="btag">Certification</span>
+					<span class="btag">Red Team</span>
+					<span class="btag">Review</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="article-content" style="z-index:2;position:relative;">
+
+		<div style="background:rgba(255,204,0,0.06);border:1px solid rgba(255,204,0,0.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-family:var(--font-mono);font-size:0.82rem;color:#ffcc00;">
+			⚠️ Note: This review shares my personal exam experience and high-level learning points only. I am not disclosing exam answers or violating certification policy.
+		</div>
+
+		<h2>Overview</h2>
+		<p>I'm excited to share that I've successfully earned the <strong>eCPPTv3 (eLearnSecurity Certified Professional Penetration Tester)</strong> certification from INE 🎉</p>
+
+		<p>This milestone marks an important step in my journey toward becoming a well-rounded cybersecurity professional. What makes this achievement even more rewarding is completing the fully practical exam in just 10 hours, significantly under the allotted time—highlighting both efficiency and technical depth.</p>
+
+		<h2>Certification Snapshot</h2>
+		<figure style="margin:0 0 1.5rem 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.8rem;">
+			<img src="../certifications/eCPPT.jfif" alt="eCPPTv3 certification" style="display:block;width:100%;max-width:980px;height:auto;border-radius:3px;margin:0 auto;" loading="lazy" />
+			<figcaption style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Official eCPPTv3 certification from INE</figcaption>
+		</figure>
+
+		
+
+		<h2>Why eCPPTv3?</h2>
+		<p>I chose the eCPPTv3 because of its strong focus on real-world, hands-on penetration testing. Unlike traditional theory-heavy certifications, this exam immerses you in a live lab environment where success depends on your ability to think critically, adapt, and execute attacks across a multi-layered infrastructure.</p>
+
+		<p>It's not about memorization—it's about demonstrating real offensive security skills.</p>
+
+		<h2>Key Takeaways: Technical Domains Covered</h2>
+
+		<p>Throughout this journey, I developed and strengthened practical skills across multiple domains:</p>
+
+		<h3>Network Penetration Testing</h3>
+		<p>Conducting scanning, enumeration, and exploitation of exposed services. This involves using tools like Nmap for reconnaissance, identifying vulnerable services, and understanding network architecture to plan effective attack paths.</p>
+
+		<h3>Web Application Exploitation</h3>
+		<p>Identifying and exploiting vulnerabilities such as SQL Injection, XSS, and file inclusion flaws. The exam tested ability to intercept, analyze, and manipulate web traffic, as well as understanding modern web application security weaknesses.</p>
+
+		<h3>System Exploitation</h3>
+		<p>Compromising both Linux and Windows systems through vulnerabilities and misconfigurations. This included kernel exploits, service misconfigurations, and leveraging default credentials and weak access controls.</p>
+
+		<h3>Privilege Escalation</h3>
+		<p>Elevating access using local exploits, weak permissions, and credential reuse techniques. Understanding how to move from a low-privilege shell to domain administrator or root access across diverse operating systems.</p>
+
+		<h3>Active Directory Attacks</h3>
+		<p>Performing common AD attacks including Kerberoasting, AS-REP Roasting, and domain enumeration. These are critical skills for any red team operating in enterprise Windows environments.</p>
+
+		<h3>Lateral Movement</h3>
+		<p>Expanding access across the network using pivoting techniques and compromised credentials. Understanding trust relationships, network segmentation, and how to move from one compromised host to reach sensitive systems.</p>
+
+		<h3>Post-Exploitation &amp; Pivoting</h3>
+		<p>Establishing persistence and navigating internal environments after initial compromise. This includes maintaining access, gathering intelligence, and demonstrating the full impact of successful compromise.</p>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>domains-covered.md</span>
+				<span>technical-focus</span>
+			</div>
+			<pre><code>✓ Network reconnaissance and scanning
+✓ Service enumeration and vulnerability identification
+✓ Remote code execution techniques
+✓ Privilege escalation (Windows & Linux)
+✓ Active Directory exploitation
+✓ Web application penetration testing
+✓ Post-exploitation and lateral movement
+✓ Multi-layered environment compromise</code></pre>
+		</div>
+
+		<h2>Challenges Faced</h2>
+
+		<p>The exam environment is designed to closely simulate a real penetration testing engagement. There are no hints or multiple-choice questions—everything is hands-on.</p>
+
+		<p>You are expected to compromise multiple systems, pivot across networks, escalate privileges, and demonstrate full control of the environment. Completing all of this within 10 hours was challenging, but ultimately very rewarding.</p>
+
+		<p>Key challenges included:</p>
+		<ul>
+			<li><strong>Complex Infrastructure:</strong> Multi-layered environments with multiple interconnected systems requiring strategic pivot planning</li>
+			<li><strong>Time Management:</strong> Balancing thorough enumeration with the need to progress through the environment efficiently</li>
+			<li><strong>Proof Requirements:</strong> Documenting every finding with evidence, requiring clean note-taking and organized reporting</li>
+			<li><strong>Technical Breadth:</strong> Needing proficiency across multiple attack domains without relying on automated tools alone</li>
+		</ul>
+
+		<div class="codeblock">
+			<div class="bar">
+				<span>exam-workflow.sh</span>
+				<span>methodology</span>
+			</div>
+			<pre><code><span class="cmt"># Successful exam approach</span>
+1. External reconnaissance and initial compromise
+2. Internal network mapping and target identification
+3. Strategic privilege escalation path planning
+4. Multi-stage exploitation and lateral movement
+5. Post-exploitation persistence and documentation
+6. Final evidence compilation and reporting</code></pre>
+		</div>
+
+		<h2>Practical Experience Gained</h2>
+
+		<p>This certification significantly enhanced my red team capabilities. The hands-on nature of the exam forces you to develop practical problem-solving skills that cannot be learned from videos alone. You must:</p>
+
+		<ul>
+			<li>Think like an attacker and plan multi-stage operations</li>
+			<li>Adapt when initial attack vectors fail</li>
+			<li>Maintain detailed records for evidence and reporting</li>
+			<li>Demonstrate technical depth across multiple security domains</li>
+			<li>Work under time and resource constraints</li>
+		</ul>
+
+		<h2>Conclusion</h2>
+
+		<p>The eCPPTv3 stands out as one of the most comprehensive and practical certifications in penetration testing. It significantly enhanced my red team capabilities and strengthened my confidence in handling real-world scenarios—from external attacks to internal Active Directory compromises.</p>
+
+		<p>If you're aiming to validate your hands-on offensive security skills across multiple domains, this certification is definitely worth pursuing. The 10-hour completion demonstrates not just knowledge, but practical efficiency and technical depth that employers seek in senior penetration testers.</p>
+
+		<h2>Key Recommendations for Future Candidates</h2>
+
+		<ul>
+			<li>Build a strong foundation in network fundamentals before attempting this certification</li>
+			<li>Practice Active Directory attacks extensively—they're a significant portion of the exam</li>
+			<li>Develop your own toolkit and become proficient with both manual and automated approaches</li>
+			<li>Focus on methodology and documentation as much as exploitation techniques</li>
+			<li>Take practice exams and timed lab challenges to build exam stamina</li>
+			<li>Keep detailed notes on techniques and common misconfigurations for rapid reference</li>
+		</ul>
+
+		<h2>What's Next?</h2>
+
+		<p>With eCPPTv3 now under my belt, I'm focused on deepening expertise in specialized areas like Advanced Active Directory exploitation, cloud security pentesting, and advanced red team operations. Continuous learning and hands-on practice remain essential in this dynamic field.</p>
+
+		<div style="display:flex;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+			<a href="index.html" class="btn btn-ghost">← All Write-ups</a>
+			<a href="../index.html#certs" class="btn btn-ghost">View My Certifications →</a>
+		</div>
+
+	</main>
+
+	<footer class="footer" style="z-index:2;position:relative;">
+		<div class="container">
+			<div class="footer-bottom" style="border-top:none;padding-top:0">
+				<p>© 2026 Mohamed Yassine Bougamra</p>
+				<p class="footer-ascii">/* stay paranoid, stay safe */</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/main.js"></script>
+</body>
+</html>
